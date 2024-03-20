@@ -2,31 +2,82 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صورة الخلفية المتواجدة</title>
+    <title>برنامج الجوال</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            overflow-x: scroll;
         }
 
-        .background-image {
-            height: 100vh;
-            width: 200%;  /* زيادة العرض لتمكين التمرير الأفقي */
-            scroll-snap-type: x mandatory;  /* تحديد نوع التمرير الأفقي */
-            scroll-padding: 0 50%;  /* تعيين الهامش لوسط الصورة */
+        #section1 {
+            height: 25vh;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        .background-image img {
-            width: 100%;  /* تعيين عرض الصورة بنسبة 100٪ لتملئ العرض */
-            height: 100%;  /* تعيين ارتفاع الصورة بنسبة 100٪ لتملئ الارتفاع */
-            object-fit: cover;  /* ضبط تناسب الصورة لتغطية العرض والارتفاع */
+        #section1 input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #section1 button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #section2 {
+            height: 75vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #section2 img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        #section2.zoomed img {
+            cursor: zoom-out;
+            transform: scale(0.8); /* تعديل القيمة حسب الحجم المطلوب */
         }
     </style>
 </head>
 <body>
-    <div class="background-image">
-        <img src="1stFloor.png" alt="صورة الخلفية">
+    <div id="section1">
+        <input type="text" placeholder="انبوت 1">
+        <input type="text" placeholder="انبوت 2">
+        <button onclick="toggleSection()">أرسال</button>
     </div>
+
+    <div id="section2">
+        <img src="1stFloor.png" alt="الصورة" onclick="toggleSection()">
+    </div>
+
+    <script>
+        function toggleSection() {
+            var section1 = document.getElementById("section1");
+            var section2 = document.getElementById("section2");
+
+            if (section1.style.height === "25vh") {
+                section1.style.height = "0";
+                section2.style.height = "100vh";
+                section2.classList.add("zoomed");
+            } else {
+                section1.style.height = "25vh";
+                section2.style.height = "75vh";
+                section2.classList.remove("zoomed");
+            }
+        }
+    </script>
 </body>
 </html>
