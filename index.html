@@ -7,7 +7,7 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: auto;
+            overflow: hidden;
         }
 
         .background-image {
@@ -15,12 +15,41 @@
             width: 150%;
             background-image: url('1stFloor.png');
             background-size: cover;
-            background-position: center;
             background-repeat: no-repeat;
         }
     </style>
 </head>
 <body>
     <div class="background-image"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var backgroundElement = document.querySelector(".background-image");
+
+            var startX = 0;
+            var startY = 0;
+            var isMouseDown = false;
+
+            backgroundElement.addEventListener("mousedown", function(event) {
+                isMouseDown = true;
+                startX = event.pageX;
+                startY = event.pageY;
+            });
+
+            backgroundElement.addEventListener("mousemove", function(event) {
+                if (isMouseDown) {
+                    var deltaX = event.pageX - startX;
+                    var deltaY = event.pageY - startY;
+
+                    backgroundElement.style.backgroundPositionX = (deltaX * 2) + "px";
+                    backgroundElement.style.backgroundPositionY = (deltaY * 2) + "px";
+                }
+            });
+
+            backgroundElement.addEventListener("mouseup", function(event) {
+                isMouseDown = false;
+            });
+        });
+    </script>
 </body>
 </html>
