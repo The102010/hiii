@@ -7,49 +7,26 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow-x: scroll;
         }
 
         .background-image {
             height: 100vh;
-            width: 150%;
-            background-image: url('1stFloor.png');
-            background-size: cover;
-            background-repeat: no-repeat;
+            width: 200%;  /* زيادة العرض لتمكين التمرير الأفقي */
+            scroll-snap-type: x mandatory;  /* تحديد نوع التمرير الأفقي */
+            scroll-padding: 0 50%;  /* تعيين الهامش لوسط الصورة */
+        }
+
+        .background-image img {
+            width: 100%;  /* تعيين عرض الصورة بنسبة 100٪ لتملئ العرض */
+            height: 100%;  /* تعيين ارتفاع الصورة بنسبة 100٪ لتملئ الارتفاع */
+            object-fit: cover;  /* ضبط تناسب الصورة لتغطية العرض والارتفاع */
         }
     </style>
 </head>
 <body>
-    <div class="background-image"></div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function(event) {
-            var backgroundElement = document.querySelector(".background-image");
-
-            var startX = 0;
-            var startY = 0;
-            var isMouseDown = false;
-
-            backgroundElement.addEventListener("mousedown", function(event) {
-                isMouseDown = true;
-                startX = event.pageX;
-                startY = event.pageY;
-            });
-
-            backgroundElement.addEventListener("mousemove", function(event) {
-                if (isMouseDown) {
-                    var deltaX = event.pageX - startX;
-                    var deltaY = event.pageY - startY;
-
-                    backgroundElement.style.backgroundPositionX = (deltaX * 2) + "px";
-                    backgroundElement.style.backgroundPositionY = (deltaY * 2) + "px";
-                }
-            });
-
-            backgroundElement.addEventListener("mouseup", function(event) {
-                isMouseDown = false;
-            });
-        });
-    </script>
+    <div class="background-image">
+        <img src="1stFloor.png" alt="صورة الخلفية">
+    </div>
 </body>
 </html>
