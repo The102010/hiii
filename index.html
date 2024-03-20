@@ -10,7 +10,7 @@
         }
 
         #section1 {
-            height: 25vh;
+            height: 50vh;
             background-color: #f2f2f2;
             display: flex;
             flex-direction: column;
@@ -38,27 +38,28 @@
         }
 
         #section2 {
-            height: 75vh;
+            height: 50vh;
             position: relative;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: height 0.3s ease; /* إضافة تأثير انتقالي للارتفاع */
         }
 
         #section2.collapsed {
-            height: 25vh;
+            height: 0;
         }
 
         #section2 img {
-            height: 100%;
+            max-height: 100%;
             width: auto;
             object-fit: contain;
-            cursor: zoom-in;
-            transition: transform 0.3s ease;
+            transition: height 0.3s ease;
         }
 
         #section2.zoomed img {
-            cursor: zoom-out;
-            transform: scale(0.8); /* تعديل القيمة حسب الحجم المطلوب */
+            height: 100%;
         }
     </style>
 </head>
@@ -82,9 +83,9 @@
             section2.classList.toggle("collapsed"); // تبديل الحالة المنطوية للقسم الثاني
 
             if (section1.classList.contains("collapsed")) {
-                section2.classList.add("zoomed"); // إذا تمت المنطوية، تكبير الصورة
+                section2.classList.remove("zoomed"); // إلغاء تكبير الصورة
             } else {
-                section2.classList.remove("zoomed"); // إذا تم الفتح، إلغاء تكبير الصورة
+                section2.classList.add("zoomed"); // تكبير الصورة
             }
         }
     </script>
