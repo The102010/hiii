@@ -2,22 +2,17 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>برنامج الجوال</title>
+    <title>Mobile App</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
         }
 
         #section1 {
-            height: 20%;
+            height: 25vh;
             width: 100%;
-            position: absolute;
+            position: fixed;
             top: 0;
             display: flex;
             flex-direction: column;
@@ -41,38 +36,80 @@
         }
 
         #section2 {
-            height: 80%;
+            margin-top:25vh;/* ذا علشان ما يدخل القسمين ببعض*/
+            height: 75vh;
             width: 100%;
-            display: flex;
+            /* display: flex; 
+            g في مشكله مدري وش هي ممكن لازم نستعمل نوع اخر لان اذا استخدمته مارح يطلع جزءمن الكود 
+            
+            */
             justify-content: center;
             align-items: center;
+            overflow-x: auto;
         }
+        
 
         #section2 img {
-            max-height: 100%;
-            max-width: 100%;
+            height: 100%;
+            width: auto;
             object-fit: contain;
+            cursor: grab;
         }
     </style>
 </head>
 <body>
     <div id="section1">
-        <input type="text" placeholder="انبوت 1">
-        <input type="text" placeholder="انبوت 2">
-        <button onclick="toggleSection()">أرسال</button>
+        <input type="text" placeholder="Enter location">
+        <input type="text" placeholder="Enter destination">
+        <button onclick="toggleSection()">Submit</button>
     </div>
 
     <div id="section2">
-        <img src="1stFloor.png" alt="الصورة">
+        <img id="image" src="1stFloor.png" alt="Image">
     </div>
 
     <script>
-        function toggleSection() {
-            var section1 = document.getElementById("section1");
-            var section2 = document.getElementById("section2");
+        var section1 = document.getElementById("section1");
+        var section2 = document.getElementById("section2");
+        var image = document.getElementById("image");
 
-            section1.style.display = "none"; // إخفاء القسم الأول
-            section2.style.display = "flex"; // إظهار القسم الثاني
+        window.addEventListener("scroll", function() {
+            var scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            var translateYValue = -(scrollPercent * (section2.offsetHeight - window.innerHeight));
+
+            section1.style.transform = "translateY(" + translateYValue + "px)";
+        });
+
+        var isDragging = false;
+        var startingX;
+
+        image.addEventListener("mousedown", function(event) {
+            isDragging = true;
+            startingX = event.clientX - image.offsetLeft;
+            image.style.cursor = "grabbing";
+        });
+
+        image.addEventListener("mousemove", function(event) {
+            if (isDragging) {
+                var moveX = event.clientX - startingX;
+                image.style.transform = "translateX(" + moveX + "px)";
+            }
+        });
+
+        image.addEventListener("mouseup", function() {
+            isDragging = false;
+            image.style.cursor = "grab";
+        });
+
+        image.addEventListener("mouseleave", function() {
+            isDragging = false;
+            image.style.cursor = "grab";
+        });
+
+        function toggleSection() {
+            //تحط وش يصير اذا ضغط غالبا يصغر القسم الاول او يرسل ركوست 
+
+            // section1.style.display = "none";
         }
     </script>
 </body>
