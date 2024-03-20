@@ -7,20 +7,23 @@
         body {
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         #section1 {
-            height: 50vh;
-            background-color: #f2f2f2;
+            height: 20%;
+            width: 100%;
+            position: absolute;
+            top: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: height 0.3s ease; /* إضافة تأثير انتقالي للارتفاع */
-        }
-
-        #section1.collapsed {
-            height: 0;
+            background-color: #f2f2f2;
         }
 
         #section1 input[type="text"] {
@@ -38,28 +41,17 @@
         }
 
         #section2 {
-            height: 50vh;
-            position: relative;
-            overflow: hidden;
+            height: 80%;
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: height 0.3s ease; /* إضافة تأثير انتقالي للارتفاع */
-        }
-
-        #section2.collapsed {
-            height: 0;
         }
 
         #section2 img {
             max-height: 100%;
-            width: auto;
+            max-width: 100%;
             object-fit: contain;
-            transition: height 0.3s ease;
-        }
-
-        #section2.zoomed img {
-            height: 100%;
         }
     </style>
 </head>
@@ -70,7 +62,7 @@
         <button onclick="toggleSection()">أرسال</button>
     </div>
 
-    <div id="section2" onclick="toggleSection()">
+    <div id="section2">
         <img src="1stFloor.png" alt="الصورة">
     </div>
 
@@ -79,14 +71,8 @@
             var section1 = document.getElementById("section1");
             var section2 = document.getElementById("section2");
 
-            section1.classList.toggle("collapsed"); // تبديل الحالة المنطوية للقسم الأول
-            section2.classList.toggle("collapsed"); // تبديل الحالة المنطوية للقسم الثاني
-
-            if (section1.classList.contains("collapsed")) {
-                section2.classList.remove("zoomed"); // إلغاء تكبير الصورة
-            } else {
-                section2.classList.add("zoomed"); // تكبير الصورة
-            }
+            section1.style.display = "none"; // إخفاء القسم الأول
+            section2.style.display = "flex"; // إظهار القسم الثاني
         }
     </script>
 </body>
