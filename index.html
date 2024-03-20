@@ -1,26 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>صفحة الجوال</title>
     <style>
         body {
-            background-image: url('1stFloor.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+            font-family: Arial, sans-serif;
         }
-        
-        @media (max-width: 768px) {
-            body {
-                background-size: 100vw 100vh;
-            }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
         }
-    </style>    
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: justify;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>مرحبًا بك في صفحة الجوال</h1>
+        <p>
+            هذا مثال لصفحة HTML مستهدفة للجوالات. يتم استخدام وسم <code>&lt;meta&gt;</code> الذي يحمل الخاصية <code>viewport</code> لتحديد عرض المشاهدة ومقياسه الابتدائي.
+            النمط المدمج في الوثيقة يتم استخدامه لتحقيق تنسيق مناسب للعناصر في الصفحة وضبط عرض الحاوية حسب الحاجة.
+        </p>
+    </div>
 </body>
 </html>
