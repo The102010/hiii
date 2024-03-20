@@ -16,6 +16,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            transition: height 0.3s ease; /* إضافة تأثير انتقالي للارتفاع */
+        }
+
+        #section1.collapsed {
+            height: 0;
         }
 
         #section1 input[type="text"] {
@@ -36,6 +41,11 @@
             height: 75vh;
             position: relative;
             overflow: hidden;
+            transition: height 0.3s ease; /* إضافة تأثير انتقالي للارتفاع */
+        }
+
+        #section2.collapsed {
+            height: 0;
         }
 
         #section2 img {
@@ -68,14 +78,13 @@
             var section1 = document.getElementById("section1");
             var section2 = document.getElementById("section2");
 
-            if (section1.style.height === "25vh") {
-                section1.style.height = "0";
-                section2.style.height = "100vh";
-                section2.classList.add("zoomed");
+            section1.classList.toggle("collapsed"); // تبديل الحالة المنطوية للقسم الأول
+            section2.classList.toggle("collapsed"); // تبديل الحالة المنطوية للقسم الثاني
+
+            if (section1.classList.contains("collapsed")) {
+                section2.classList.add("zoomed"); // إذا تمت المنطوية، تكبير الصورة
             } else {
-                section1.style.height = "25vh";
-                section2.style.height = "75vh";
-                section2.classList.remove("zoomed");
+                section2.classList.remove("zoomed"); // إذا تم الفتح، إلغاء تكبير الصورة
             }
         }
     </script>
