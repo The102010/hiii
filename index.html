@@ -46,6 +46,7 @@
             justify-content: center;
             align-items: center;
             overflow-x: auto;
+            align-items: center;
         }
         
 
@@ -54,17 +55,26 @@
             width: auto;
             object-fit: contain;
             cursor: grab;
+        
+           
         }
     </style>
+    
 </head>
 <body>
+  
+
     <div id="section1">
+        <div class="navigator">
+            <button onclick="navigate('previous')">←</button>
+            <button onclick="navigate('next')">→</button>
+        </div>
         <input type="text" placeholder="Enter location">
         <input type="text" placeholder="Enter destination">
         <button onclick="toggleSection()">Submit</button>
     </div>
 
-    <div id="section2">
+    <div id="section2" align= "center">
         <img id="image" src="1stFloor.png" alt="Image">
     </div>
 
