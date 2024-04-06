@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>بوصلة بسيطة</title>
+    <style>
+        #compass {
+            transform-origin: center;
+            transition: transform 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div>الشمال</div>
+    <img id="compass" src="compass.png" alt="Compass" style="width: 100px; height: 100px;">
+
+    <script>
+        if ('DeviceOrientationEvent' in window) {
+            window.addEventListener('deviceorientation', function(event) {
+                var alpha = event.alpha;
+                var compassImg = document.getElementById('compass');
+                if (compassImg) {
+                    // تحديث دوران الصورة بناءً على الزاوية
+                    compassImg.style.transform = `rotate(${-alpha}deg)`;
+                }
+            }, false);
+        } else {
+            alert('مستشعر الحركة غير متوفر في هذا الجهاز.');
+        }
+    </script>
+</body>
+</html>
