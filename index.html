@@ -1,126 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile App</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        #section1 {
-            height: 25vh;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #f2f2f2;
-        }
-
-        #section1 input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-        #section1 button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        #section2 {
-            margin-top:25vh;/* ذا علشان ما يدخل القسمين ببعض*/
-            height: 75vh;
-            width: 100%;
-            /* display: flex; 
-            g في مشكله مدري وش هي ممكن لازم نستعمل نوع اخر لان اذا استخدمته مارح يطلع جزءمن الكود 
-            
-            */
-            justify-content: center;
-            align-items: center;
-            overflow-x: auto;
-            align-items: center;
-        }
-        
-
-        #section2 img {
-            height: 100%;
-            width: auto;
-            object-fit: contain;
-            cursor: grab;
-        
-           
-        }
-    </style>
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movement Direction Detector</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-
-    <div id="section1">
-        <div class="navigator">
-            <button onclick="navigate('previous')">←</button>
-            <button onclick="navigate('next')">→</button>
-        </div>
-        <input type="text" placeholder="Enter location">
-        <input type="text" placeholder="Enter destination">
-        <button onclick="toggleSection()">Submit</button>
-    </div>
-
-    <div id="section2" align= "center">
-        <img id="image" src="1stFloor.png" alt="Image">
-    </div>
-
-    <script>
-        var section1 = document.getElementById("section1");
-        var section2 = document.getElementById("section2");
-        var image = document.getElementById("image");
-
-        window.addEventListener("scroll", function() {
-            var scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            var translateYValue = -(scrollPercent * (section2.offsetHeight - window.innerHeight));
-
-            section1.style.transform = "translateY(" + translateYValue + "px)";
-        });
-
-        var isDragging = false;
-        var startingX;
-
-        image.addEventListener("mousedown", function(event) {
-            isDragging = true;
-            startingX = event.clientX - image.offsetLeft;
-            image.style.cursor = "grabbing";
-        });
-
-        image.addEventListener("mousemove", function(event) {
-            if (isDragging) {
-                var moveX = event.clientX - startingX;
-                image.style.transform = "translateX(" + moveX + "px)";
-            }
-        });
-
-        image.addEventListener("mouseup", function() {
-            isDragging = false;
-            image.style.cursor = "grab";
-        });
-
-        image.addEventListener("mouseleave", function() {
-            isDragging = false;
-            image.style.cursor = "grab";
-        });
-
-        function toggleSection() {
-            //تحط وش يصير اذا ضغط غالبا يصغر القسم الاول او يرسل ركوست 
-
-            // section1.style.display = "none";
-        }
-    </script>
+<div id="app">
+    <h1>Movement Directions</h1>
+    <ul id="directionsList"></ul>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
