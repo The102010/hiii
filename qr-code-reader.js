@@ -1,7 +1,8 @@
 function onScanSuccess(decodedText, decodedResult) {
     // Handle on success condition with the decoded text or result.
     console.log(`Code matched = ${decodedText}`, decodedResult);
-    document.getElementById('qr-result').innerText = "نتيجة الفحص: " + decodedText;
+    // Redirect to the URL from the QR code
+    window.location.href = decodedText;
 }
 
 function onScanFailure(error) {
