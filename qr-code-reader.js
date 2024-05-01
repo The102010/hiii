@@ -43,7 +43,7 @@ function onScanSuccess(decodedText, decodedResult) {
 }
 
 function onScanFailure(error) {
-    console.error(`Scan failure: ${error}`);
+    alert.error(`Scan failure: ${error}`);
 }
 
 function startCamera() {
