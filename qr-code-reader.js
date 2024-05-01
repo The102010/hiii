@@ -23,3 +23,7 @@ function startCamera() {
         }
     }).catch(function (error) {
         console.error(`Error in getting camera devices: ${error}`);
+    });
+}
+
+document.getElementById('startButton').addEventListener('click', startCamera);
