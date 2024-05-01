@@ -11,11 +11,19 @@ function onScanFailure(error) {
 function startCamera() {
     Html5Qrcode.getCameras().then(function (cameras) {
         if (cameras.length > 0) {
-            // Find a camera that is pointed at the environment (usually the rear camera).
-            const rearCamera = cameras.find(camera => camera.facingMode === 'environment');
+            // Attempt to select the rear camera based on common naming conventions or IDs.
+            let cameraId = null;
+            for (let camera of cameras) {
+                if (camera.label.toLowerCase().includes("back") || camera.label.toLowerCase().includes("rear")) {
+                    cameraId = camera.id;
+                    break;
+                }
+            }
 
-            // If a rear camera is found, use it. Otherwise, fall back to the first available camera.
-            const cameraId = rearCamera ? rearCamera.id : cameras[0].id;
+            // If no rear camera was specifically identified, fall back to the first available camera.
+            if (!cameraId) {
+                cameraId = cameras[0].id;
+            }
 
             const config = { fps: 10, qrbox: { width: 250, height: 250 } };
             const html5QrcodeScanner = new Html5Qrcode("qr-reader");
