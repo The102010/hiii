@@ -8,7 +8,7 @@ function onScanFailure(error) {
     console.error(`Scan failure: ${error}`);
 }
 
-window.addEventListener('load', function () {
+function startCamera() {
     Html5Qrcode.getCameras().then(function (cameras) {
         if (cameras.length > 0) {
             var cameraId = cameras.find(camera => camera.facingMode === 'environment')?.id || cameras[0].id;
@@ -23,5 +23,3 @@ window.addEventListener('load', function () {
         }
     }).catch(function (error) {
         console.error(`Error in getting camera devices: ${error}`);
-    });
-});
