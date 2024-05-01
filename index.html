@@ -1,31 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-    <title>بوصلة بسيطة</title>
-    <style>
-        #compass {
-            transform-origin: center;
-            transition: transform 0.5s;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>فتح الكاميرا</title>
 </head>
 <body>
-    <div>الشمال</div>
-    <img id="compass" src="compass.png" alt="Compass" style="width: 100px; height: 100px;">
+    <button id="openCameraButton">افتح الكاميرا</button>
+    <input type="file" accept="image/*" capture="camera" id="cameraInput" style="display:none;">
 
-    <script>
-        if ('DeviceOrientationEvent' in window) {
-            window.addEventListener('deviceorientation', function(event) {
-                var alpha = event.alpha;
-                var compassImg = document.getElementById('compass');
-                if (compassImg) {
-                    // تحديث دوران الصورة بناءً على الزاوية
-                    compassImg.style.transform = `rotate(${-alpha}deg)`;
-                }
-            }, false);
-        } else {
-            alert('مستشعر الحركة غير متوفر في هذا الجهاز.');
-        }
-    </script>
+    <script src="camera.js"></script>
 </body>
 </html>
