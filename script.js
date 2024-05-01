@@ -3,14 +3,9 @@ document.getElementById('openCameraButton').addEventListener('click', function()
     cameraInput.click(); // تفعيل الإدخال لفتح الكاميرا
 
     cameraInput.onchange = function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            // يمكنك هنا إضافة أي معالجة للصورة المحترفة
-            alert('تم التقاط الصورة بنجاح!');
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            alert('تم التقاط الصورة بنجاح!'); // تأكيد التقاط الصورة
         }
-    };
-
-    cameraInput.onerror = function() {
-        alert('حصل خطأ أثناء فتح الكاميرا');
     };
 });
