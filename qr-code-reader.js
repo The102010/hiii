@@ -5,7 +5,7 @@ function onScanSuccess(decodedText, decodedResult) {
     window.location.href = decodedText;
 }
 
-function onScanFailure(error) {
+function onScanFailure(error) { 
     // Handle on scan failure condition.
     console.log(`Scan failure: ${error}`);
 }
