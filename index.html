@@ -3,12 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قارئQRوتوجيه</title>
-    <script src="https://unpkg.com/html5-qrcode"></script>
+    <title>Celebration Effects with Sound</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js/dist/fireworks.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #fireworksCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
 </head>
 <body>
-    <button id="startButton">بدء التقاط الQR</button>
-    <div id="qr-reader" style="width: 300px; height: 300px;"></div>
-    <script src="qr-code-reader.js"></script>
+    <canvas id="fireworksCanvas"></canvas>
+    <button onclick="launchFireworks()">ألعاب نارية</button>
+    <button onclick="startSnow()">تأثير الثلج</button>
+    <button onclick="burstBalloons()">تفجير بالونات</button>
+    <button onclick="fallingLeaves()">سقوط بتلات الزهور</button>
+    <button onclick="danceStars()">رقص النجوم</button>
+
+    <!-- عناصر الصوت -->
+    <audio id="soundFireworks" src="path/to/your/fireworks_sound.mp3"></audio>
+    <audio id="soundSnow" src="path/to/your/snow_sound.mp3"></audio>
+    <audio id="soundBalloons" src="path/to/your/balloons_sound.mp3"></audio>
+    <audio id="soundLeaves" src="path/to/your/leaves_sound.mp3"></audio>
+    <audio id="soundStars" src="path/to/your/stars_sound.mp3"></audio>
+
+    <script>
+        // Fireworks
+        const fireworksCanvas = document.getElementById('fireworksCanvas');
+        const fireworks = new Fireworks(fireworksCanvas);
+        function launchFireworks() {
+            document.getElementById('soundFireworks').play();
+            fireworks.start();
+            setTimeout(() => { fireworks.stop(); }, 5000);  // Stop after 5 seconds
+        }
+
+        // Snow effect
+        function startSnow() {
+            document.getElementById('soundSnow').play();
+            confetti({
+                particleCount: 150,
+                spread: 120,
+                ticks: 300,
+                origin: { y: 0.6 },
+                shapes: ['circle'],
+                scalar: 0.8,
+                colors: ['#ffffff']
+            });
+        }
+
+        // Burst Balloons
+        function burstBalloons() {
+            document.getElementById('soundBalloons').play();
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                shapes: ['circle'],
+                colors: ['#ff0000', '#0000ff', '#00ff00'] // Red, Blue, Green
+            });
+        }
+
+        // Falling Leaves or Petals
+        function fallingLeaves() {
+            document.getElementById('soundLeaves').play();
+            confetti({
+                particleCount: 100,
+                spread: 120,
+                origin: { y: 0, x: 0.5 }, // Start from the top middle
+                shapes: ['line'],
+                colors: ['#FF5733', '#C70039', '#900C3F'] // Different shades of petals
+            });
+        }
+
+        // Dance Stars
+        function danceStars() {
+            document.getElementById('soundStars').play();
+            confetti({
+                particleCount: 200,
+                spread: 180,
+                origin: { y: 0.6 },
+                shapes: ['star'],
+                colors: ['#ffffff', '#ffd700', '#ff6347'] // White, Gold, Red
+            });
+        }
+    </script>
 </body>
 </html>
+
+
